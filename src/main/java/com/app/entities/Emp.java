@@ -31,30 +31,35 @@ import lombok.ToString;
 @ToString(exclude ="branch")
 public class Emp {
 	
-	 @Id 
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	     @Column(name = "emp_Id")
-	 private Long empId;
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "emp_Id")
+	private Long empId;
 	 
-       @Column(length = 20)
-			private String firstName;
+	@Column(length = 20)
+	private String firstName;
        
-       @Column (length = 20)
-		private String lastName;
-       @Column (length = 50)
-     		private String email;
-       @Column (length = 50)
-     		private String mobile;
-		   @Column (length = 20)
-			private String password;
-		   @Column (length = 20)
-			private String gender;
+       	@Column (length = 20)
+	private String lastName;
+       
+	@Column (length = 50)
+     	private String email;
+       
+	@Column (length = 50)
+     	private String mobile;
 		   
-		   @Enumerated(EnumType.STRING)
-			private Role role;
+	@Column (length = 20)
+	private String password;
+	
+	@Column (length = 20)
+	private String gender;
 		   
-		   @ManyToOne
-		   @JoinColumn (name="branch_id")
-			private Branch branch;
+	@Enumerated(EnumType.STRING)
+	private Role role;
+		   
+	
+	@ManyToOne	
+	@JoinColumn (name="branch_id")
+	private Branch branch;
 
 }
