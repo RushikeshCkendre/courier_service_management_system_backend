@@ -50,16 +50,14 @@ public class CustomerController {
 
 	@GetMapping("/{Id}")
 	public ResponseEntity<?> getCustomerOrders(@PathVariable Long Id) {
-
 		List<GetCustomerAllOrdersDTO> getCustomerAllOrdersDTOList = customerService.getCustomerOrders(Id);
 
 		if (getCustomerAllOrdersDTOList == null) {
-
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(false, "Data not found!"));
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse(false, "Data not found!"));
 		}
-
+		 else
 		return ResponseEntity.status(HttpStatus.OK).body(getCustomerAllOrdersDTOList);
-	}
+		}
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> hireEmployee(@RequestBody @Valid SignupRequest request) {
@@ -67,11 +65,8 @@ public class CustomerController {
 		// invoke Service layer
 		customerService.addCustomer(request);
 		return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse(true, "customer Registered"));
-
 	}
 	
-
-
 	@PostMapping("/signIn")
 	public ResponseEntity<?> logInUser(@RequestBody AuthCustomerRequestDto request) {
 		System.out.println("in sign in " + request);
@@ -82,6 +77,7 @@ public class CustomerController {
 		if (authRespDto != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(authRespDto);
 		}
+		else
 		return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(false, "customer Not Found"));
 	}
 	
@@ -107,6 +103,4 @@ public class CustomerController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse(true, "Customer update"));
 	}
 	
-	
-
 }
